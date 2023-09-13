@@ -1,4 +1,5 @@
 #include"calculator.h"
+
 /*void Output::message(string message)
 {
     cout << message << endl;
@@ -11,17 +12,34 @@ Calculator::Calculator(int first, int second, int third)
     _third = third;
 }
 
-void Calculator::message(string message)
+int Calculator::plus(int first, int second)
 {
-    cout << message << endl;
+    return first + second;
 }
 
-void Calculator::input()
+int Calculator::minus(int first, int second)
 {
-    cin >> _first;
+    return first - second;
 }
 
-void Calculator::inputChase()
+int Calculator::multiply(int first, int second)
 {
-    cin >> _chase;
+    return first * second;
 }
+
+double Calculator::division(int first, int second)
+{
+    return first/second;
+}
+
+int Calculator::exponentiation(int first, int second)
+{
+    return pow(first, second);
+}
+
+double Calculator::log(int first, int second)
+{
+    return ::log(first)/::log(second);
+}
+
+

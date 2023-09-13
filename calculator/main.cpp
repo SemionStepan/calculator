@@ -6,5 +6,8 @@
 
 int main()
 {
+    Calculator calc(0,0,0);
+
+    cout << calc.log(2,4) << endl;
     return 0;
 }
