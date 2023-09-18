@@ -6,8 +6,11 @@
 
 int main()
 {
-    Calculator calc(0,0,0);
+    cout << "Выберите: " << endl;
+    cout << "1. Сложить" << endl << "2. Отнять" << endl << "3. Умножить" << endl << "4. Разделить" << endl << "5. Возвести в степень" << endl << "6. Перейти к основанию(логарифм)" << endl << "7. Завершить" << endl;
+    int chasen = 0;
+    cin >> chasen;
+    Programm (chasen);
 
-    cout << calc.log(2,4) << endl;
     return 0;
 }

@@ -6,19 +6,15 @@
 
 using namespace std;
 
-class Programm // includes Calc, Protokol, In, Out, sth else
-{
-
-};
-
 class Calculator
 {
 public:
-    int _first;
-    int _second;
-    int _third;
+    int _first {0};
+    int _second {0};
+    int _third {0};
+
 public:
-    Calculator(int first, int second, int third);
+    Calculator();
 
     int plus(int first, int second);
     int minus(int first, int second);
@@ -26,6 +22,19 @@ public:
     double division(int first, int second);
     int exponentiation(int first, int second);
     double log(int first, int second);
+};
+
+class Programm // includes Calc, Protokol, In, Out, sth else
+{
+    int _chase;
+    Calculator calc;
+
+public:
+    Programm(int chase);
+
+    void hello();
+    void input();
+    void exec();
 };
 
 /*class Output
