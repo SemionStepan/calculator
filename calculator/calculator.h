@@ -31,21 +31,9 @@ class Programm // includes Calc, Protokol, In, Out, sth else
 
 public:
     Programm(int chase);
+    Programm();
 
-    void hello();
-    void input();
     void exec();
 };
 
-/*class Output
-{
-public:
-    Output();
-
-};
-*/
-class Input
-{
-
-};
 #endif // CALCULATOR_H
