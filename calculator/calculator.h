@@ -1,39 +1,19 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
 
-#include <iostream>
 #include <cmath>
-
-using namespace std;
 
 class Calculator
 {
 public:
-    int _first {0};
-    int _second {0};
-    int _third {0};
-
-public:
     Calculator();
 
-    int plus(int first, int second);
-    int minus(int first, int second);
-    int multiply(int first, int second);
-    double division(int first, int second);
-    int exponentiation(int first, int second);
-    double log(int first, int second);
-};
-
-class Programm // includes Calc, Protokol, In, Out, sth else
-{
-    int _chase;
-    Calculator calc;
-
-public:
-    Programm(int chase);
-    Programm();
-
-    void exec();
+    inline double plus(double first, double second) { return first + second; }
+    inline double minus(double first, double second) { return first - second; }
+    inline double multiply(double first, double second) { return first * second; }
+    inline double division(double first, double second) { return first/second; }
+    inline double exponentiation(double first, double second) { return pow(first, second); }
+    inline double log(double first, double second) { return std::log(first)/std::log(second); }
 };
 
 #endif // CALCULATOR_H
