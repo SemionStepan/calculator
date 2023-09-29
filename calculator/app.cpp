@@ -1,15 +1,13 @@
 #include "app.h"
 
-using namespace std;
-
-void App::save()
+void App::save(double a)
 {
-
+    file.fwrite(a);
 }
 
 void App::view()
 {
-
+    file.fread();
 }
 
 void App::dialog(int _chase)
@@ -67,16 +65,23 @@ App::App()
 
 void App::exec()
 {
+    fstream file;
+    file.open("/home/semeon/QtHW/calculator/proga.txt", fstream::app); if (!file) { cout << "Файл не открыт\n"; }
     while(true)
     {
         cout << "Выберите: " << endl //<<Выберите действие
              << "1. Сложить" << endl << "2. Отнять" << endl << "3. Умножить" << endl << "4. Разделить"
              << endl << "5. Возвести в степень" << endl << "6. Перейти к основанию(логарифм)"
-             << endl << "7. Завершить" << endl;
+             << endl << "7. Показать протокол" << endl << "8. Завершить" << endl;
         cin >> _chase; // >>1234567
+        save(_chase);
         if(_chase == 7)
+        { view(); }
+
+        if(_chase == 8)
         {break;}
         dialog(_chase);
+        save();
     }
     cout << "Отваливаюсь" << endl;
 }

@@ -6,6 +6,9 @@
 
 int main()
 {
+    std::ifstream file;
+    file.open("/home/semeon/QtHW/calculator/proga.txt", fstream::app); if (!file) { cout << "Файл не открыт\n"; return -1; }
+
     App app;
     app.exec();
 }
