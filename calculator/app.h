@@ -10,6 +10,8 @@ using namespace std;
 
 class App
 {
+private:
+    fstream file;
     int _chase;
     Calculator calc;
 

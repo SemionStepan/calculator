@@ -6,28 +6,6 @@
 
 int main()
 {
-    std::ifstream file;
-    file.open("/home/semeon/QtHW/calculator/proga.txt", fstream::app); if (!file) { cout << "Файл не открыт\n"; return -1; }
-
     App app;
     app.exec();
 }
-
-/*
-    while(true)
-    {        
-//                   Протокол
-//               Проверка числа
-//                   Протокол
-    cout << "Выберите: " << endl //<<Выберите действие
-         << "1. Сложить" << endl << "2. Отнять" << endl << "3. Умножить" << endl << "4. Разделить"
-         << endl << "5. Возвести в степень" << endl << "6. Перейти к основанию(логарифм)"
-         << endl << "7. Завершить" << endl;
-    cin >> chase; // >>1234567
-    if(chase == 7) {break;}
-// Проверка отрезок от 1 до 7
-// Протокол    
-// Проверка        
-    }
-}
-*/
