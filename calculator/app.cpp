@@ -10,95 +10,94 @@ void App::save(double a)
 
 void App::view()
 {
-    ifstream fin("/home/semeon/QtHW/calculator/proga.txt");
+    ifstream f("/home/semeon/QtHW/calculator/proga.txt");
 
-    int size = 0;
-    file.seekg (0, std::ios::end);
-    size = file.tellg();
-
-    int n = size, v;
-    for (int i=1; i<=n; i++)
+    string sss;
+    while(!f.eof())
     {
-        fin >> v;
-        cout << v << "\n"; // прибавили к значениям 1 и распечатали
+        getline(f, sss);
+        cout << sss << endl;
     }
 }
 
-void App::dialog(int _chase)
+void App::dialog()
 {
     double first, second = 0;
+    Expression expression(firstAsk(first), secondAsk(second));
     switch(_chase)
     {
-    case 1:
-        cout << "Введите первое число" << endl;
-        cin >> first;
-        save(first);
-        cout << "Введите второе число" << endl;
-        cin >> second;
-        save(second);
-        cout << calc.plus(first, second) << endl;
-        save(calc.plus(first, second));
+        case 1:
+            expression.setAction(1);
+            cout << _calc.calculate(expression) << endl;
+            save(_calc.calculate(expression));
         break;
-    case 2:
-        cout << "Введите первое число" << endl;
-        cin >> first;
-        save(first);
-        cout << "Введите второе число" << endl;
-        cin >> second;
-        save(second);
-        cout << calc.minus(first, second) << endl;
-        save(calc.minus(first, second));
+        case 2:
+            expression.setAction(2);
+            cout << _calc.calculate(expression) << endl;
+            save(_calc.calculate(expression));
         break;
-    case 3:
-        cout << "Введите первое число" << endl;
-        cin >> first;
-        save(first);
-        cout << "Введите второе число" << endl;
-        cin >> second;
-        save(second);
-        cout << calc.multiply(first, second) << endl;
-        save(calc.multiply(first, second));
+        case 3:
+            expression.setAction(3);
+            cout << _calc.calculate(expression) << endl;
+            save(_calc.calculate(expression));
         break;
-    case 4:
-        cout << "Введите первое число" << endl;
-        cin >> first;
-        save(first);
-        cout << "Введите второе число" << endl;
-        cin >> second;
-        save(second);
-        cout << calc.division(first, second) << endl;
-        save(calc.division(first, second));
+        case 4:
+            expression.setAction(4);
+            cout << _calc.calculate(expression) << endl;
+            save(_calc.calculate(expression));
         break;
-    case 5:
-        cout << "Введите первое число(основание)" << endl;
-        cin >> first;
-        save(first);
-        cout << "Введите второе число(степень)" << endl;
-        cin >> second;
-        save(second);
-        cout << calc.exponentiation(first, second) << endl;
-        save(calc.exponentiation(first, second));
+        case 5:
+            expression.setAction(5);
+            cout << _calc.calculate(expression) << endl;
+            save(_calc.calculate(expression));
         break;
-    case 6:
-        cout << "Введите логарифм первого числа" << endl;
-        cin >> first;
-        save(first);
-        cout << "Введите второе число(основание)" << endl;
-        cin >> second;
-        save(second);
-        cout << calc.log(first, second) << endl;
-        save(calc.log(first, second));
+        case 6:
+            expression.setAction(6);
+            cout << _calc.calculate(expression) << endl;
+            save(_calc.calculate(expression));
         break;
     }
 }
 
-App::App()
-{}
+void App::menu()
+{
+    cout << "Выберите: " << endl
+         << "1. Сложить" << endl
+         << "2. Отнять" << endl
+        << "3. Умножить" << endl
+        << "4. Разделить" << endl
+        << "5. Возвести в степень" << endl
+        << "6. Перейти к основанию(логарифм)" << endl
+        << "7. Показать протокол" << endl
+        << "8. Завершить" << endl;
+    cin >> _chase; // >>1234567
+}
+
+double App::firstAsk(double first)
+{
+    cout << "Введите первое число" << endl;
+    cin >> first;
+    save(first);
+  return first;
+}
+
+double App::secondAsk(double second)
+{
+    cout << "Введите второе число" << endl;
+    cin >> second;
+    save(second);
+  return second;
+}
+
+App::App(string fileName)
+{
+    _fileName = fileName + _ext;
+}
 
 void App::exec()
 {
-    file.open("/home/semeon/QtHW/calculator/proga.txt", fstream::app);
-    if (!file.is_open())
+    _file.open(_fileName, fstream::app);
+    if (!_file.is_open())
     {
         cout << "Файл не открыт\n";
         return;
@@ -106,18 +105,21 @@ void App::exec()
 
     while(true)
     {
-        cout << "Выберите: " << endl //<<Выберите действие
-             << "1. Сложить" << endl << "2. Отнять" << endl << "3. Умножить" << endl << "4. Разделить"
-             << endl << "5. Возвести в степень" << endl << "6. Перейти к основанию(логарифм)"
-             << endl << "7. Показать протокол" << endl << "8. Завершить" << endl;
-        cin >> _chase; // >>1234567
+        menu();
+
         save(_chase);
+
         if(_chase == 7)
-        { view(); }
+        {
+            view();
+        }
+
         if(_chase == 8)
-        {break;}
-        dialog(_chase);
-        save(0);
+        {
+            break;
+        }
+
+        dialog();
     }
     cout << "Отваливаюсь" << endl;
 }

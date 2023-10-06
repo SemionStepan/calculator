@@ -11,16 +11,22 @@ using namespace std;
 class App
 {
 private:
-    fstream file;
+    const string _ext = ".protokol";
+
     int _chase;
-    Calculator calc;
+    string _fileName;
+    fstream _file;
+    Calculator _calc;
 
     void save(double a);
     void view();
-    void dialog(int _chase);
+    void dialog();
+    void menu();
+    double firstAsk(double first);
+    double secondAsk(double second);
 
 public:
-    App();
+    App(string fileName);
 
     void exec();
 };

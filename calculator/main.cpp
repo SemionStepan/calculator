@@ -4,8 +4,8 @@
 
 #include "app.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    App app;
+    App app(argv[0]);
     app.exec();
 }
