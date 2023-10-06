@@ -2,7 +2,7 @@
 
 void App::save(double a)
 {
-    ofstream fout("/home/semeon/QtHW/calculator/proga.txt", ios::app);
+    ofstream fout(_fileName, ios::app);
     fout << a << "\n";
 
     fout.close();
@@ -10,7 +10,7 @@ void App::save(double a)
 
 void App::view()
 {
-    ifstream f("/home/semeon/QtHW/calculator/proga.txt");
+    ifstream f(_fileName);
 
     string sss;
     while(!f.eof())
@@ -112,6 +112,7 @@ void App::exec()
         if(_chase == 7)
         {
             view();
+            break;
         }
 
         if(_chase == 8)
