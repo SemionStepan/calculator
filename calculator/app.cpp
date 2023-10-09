@@ -20,7 +20,12 @@ void App::view()
 
 void App::dialog()
 {
-    Expression expression(ask("Введите второе число:"), ask("Введите первое число:"));
+    double first, second = 0;
+    first = ask("Введите первое число:");
+    second = ask("Введите второе число:");
+    Expression expression(second, first);
+    save(first);
+    save(second);
     expression.setAction(_choice);
     cout << _calc.calculate(expression) << endl;
     save(_calc.calculate(expression));
