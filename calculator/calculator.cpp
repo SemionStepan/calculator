@@ -1,6 +1,6 @@
 #include "calculator.h"
 
-Expression::Expression(double first, double second)
+Expression::Expression(double second, double first)
 {
     _first = first;
     _second = second;
@@ -29,7 +29,7 @@ double Calculator::calculate(Expression &expr)
             return exponentiation(expr._first, expr._second);
         break;
         case 6:
-            return log(expr._first, expr._second);
+            return logarithm(expr._first, expr._second);
         break;
         default:
             return 0;

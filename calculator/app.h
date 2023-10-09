@@ -13,20 +13,20 @@ class App
 private:
     const string _ext = ".protokol";
 
-    int _chase;
+    int _choice;
     string _fileName;
     fstream _file;
     Calculator _calc;
 
-    void save(double a);
+    void save(double saved);
     void view();
     void dialog();
     void menu();
-    double firstAsk(double first);
-    double secondAsk(double second);
+    double ask(string message);
 
 public:
     App(string fileName);
+    ~App();
 
     void exec();
 };

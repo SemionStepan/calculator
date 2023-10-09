@@ -9,7 +9,7 @@ struct Expression
             _second;
     int     _action;
 
-    Expression(double first, double second);
+    Expression(double second, double first);
 
     inline void setAction(int action) { _action = action; }
 };
@@ -21,7 +21,7 @@ class Calculator
     inline double multiply(double first, double second) { return first * second; }
     inline double division(double first, double second) { return first/second; }
     inline double exponentiation(double first, double second) { return pow(first, second); }
-    inline double log(double first, double second) { return std::log(first)/std::log(second); }
+    inline double logarithm(double first, double second) { return log(first)/log(second); }
 
 public:
     Calculator();

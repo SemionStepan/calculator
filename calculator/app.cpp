@@ -1,62 +1,29 @@
 #include "app.h"
 
-void App::save(double a)
+void App::save(double saved)
 {
-    ofstream fout(_fileName, ios::app);
-    fout << a << "\n";
-
-    fout.close();
+    fstream _file(_fileName, ios::app);
+    _file << saved << "\n";
 }
 
 void App::view()
 {
-    ifstream f(_fileName);
+    fstream _file(_fileName);
 
     string sss;
-    while(!f.eof())
+    while(!_file.eof())
     {
-        getline(f, sss);
+        getline(_file, sss);
         cout << sss << endl;
     }
 }
 
 void App::dialog()
 {
-    double first, second = 0;
-    Expression expression(firstAsk(first), secondAsk(second));
-    switch(_chase)
-    {
-        case 1:
-            expression.setAction(1);
-            cout << _calc.calculate(expression) << endl;
-            save(_calc.calculate(expression));
-        break;
-        case 2:
-            expression.setAction(2);
-            cout << _calc.calculate(expression) << endl;
-            save(_calc.calculate(expression));
-        break;
-        case 3:
-            expression.setAction(3);
-            cout << _calc.calculate(expression) << endl;
-            save(_calc.calculate(expression));
-        break;
-        case 4:
-            expression.setAction(4);
-            cout << _calc.calculate(expression) << endl;
-            save(_calc.calculate(expression));
-        break;
-        case 5:
-            expression.setAction(5);
-            cout << _calc.calculate(expression) << endl;
-            save(_calc.calculate(expression));
-        break;
-        case 6:
-            expression.setAction(6);
-            cout << _calc.calculate(expression) << endl;
-            save(_calc.calculate(expression));
-        break;
-    }
+    Expression expression(ask("Введите второе число:"), ask("Введите первое число:"));
+    expression.setAction(_choice);
+    cout << _calc.calculate(expression) << endl;
+    save(_calc.calculate(expression));
 }
 
 void App::menu()
@@ -64,34 +31,32 @@ void App::menu()
     cout << "Выберите: " << endl
          << "1. Сложить" << endl
          << "2. Отнять" << endl
-        << "3. Умножить" << endl
-        << "4. Разделить" << endl
-        << "5. Возвести в степень" << endl
-        << "6. Перейти к основанию(логарифм)" << endl
-        << "7. Показать протокол" << endl
-        << "8. Завершить" << endl;
-    cin >> _chase; // >>1234567
+         << "3. Умножить" << endl
+         << "4. Разделить" << endl
+         << "5. Возвести в степень" << endl
+         << "6. Перейти к основанию(логарифм)" << endl
+         << "7. Показать протокол" << endl
+         << "8. Завершить" << endl;
+    cin >> _choice;
 }
 
-double App::firstAsk(double first)
+double App::ask(string message)
 {
-    cout << "Введите первое число" << endl;
-    cin >> first;
-    save(first);
-  return first;
-}
-
-double App::secondAsk(double second)
-{
-    cout << "Введите второе число" << endl;
-    cin >> second;
-    save(second);
-  return second;
+    cout << message << endl;
+    double answer;
+    cin >> answer;
+  return answer;
 }
 
 App::App(string fileName)
 {
-    _fileName = fileName + _ext;
+
+  _fileName = fileName + _ext;
+}
+
+App::~App()
+{
+  _file.close();
 }
 
 void App::exec()
@@ -103,25 +68,25 @@ void App::exec()
         return;
     }
 
-    while(true)
+    do
     {
         menu();
 
-        save(_chase);
+        save(_choice);
 
-        if(_chase == 7)
+        if(_choice == 7)
         {
             view();
             break;
         }
 
-        if(_chase == 8)
+        if(_choice == 8)
         {
             break;
         }
 
         dialog();
-    }
+    } while(true);
     cout << "Отваливаюсь" << endl;
 }
 

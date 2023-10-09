@@ -7,5 +7,5 @@
 int main(int argc, char* argv[])
 {
     App app(argv[0]);
-    app.exec();
+    app.exec();    
 }
