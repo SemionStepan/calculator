@@ -1,14 +1,27 @@
 #include "app.h"
 
+App::App(string fileName)
+{
+    fstream _file;
+
+    if (!_file.is_open())
+    {
+        cout << "Файл не открыт\n";
+        return;
+    }
+
+    _fileName = fileName + _ext;
+}
+
 void App::save(double saved)
 {
-    fstream _file(_fileName, ios::app);
+    _file.open(_fileName, ios::app);
     _file << saved << "\n";
 }
 
 void App::view()
 {
-    fstream _file(_fileName);
+    _file.open(_fileName);
 
     string sss;
     while(!_file.eof())
@@ -16,6 +29,7 @@ void App::view()
         getline(_file, sss);
         cout << sss << endl;
     }
+    _file.close();
 }
 
 void App::dialog()
@@ -23,12 +37,17 @@ void App::dialog()
     double first, second = 0;
     first = ask("Введите первое число:");
     second = ask("Введите второе число:");
+
     Expression expression(second, first);
+    expression.setAction(_choice);
+
+    double result = _calc.calculate(expression);
+
     save(first);
     save(second);
-    expression.setAction(_choice);
-    cout << _calc.calculate(expression) << endl;
-    save(_calc.calculate(expression));
+    save(result);
+
+    cout << result << endl;
 }
 
 void App::menu()
@@ -51,12 +70,7 @@ double App::ask(string message)
     double answer;
     cin >> answer;
   return answer;
-}
 
-App::App(string fileName)
-{
-
-  _fileName = fileName + _ext;
 }
 
 App::~App()
@@ -65,14 +79,7 @@ App::~App()
 }
 
 void App::exec()
-{
-    _file.open(_fileName, fstream::app);
-    if (!_file.is_open())
-    {
-        cout << "Файл не открыт\n";
-        return;
-    }
-
+{   
     do
     {
         menu();
