@@ -18,10 +18,10 @@ private:
     fstream _file;
     Calculator _calc;
 
-    void save(double saved);
+    void save(double saved, string message);
     void view();
     void dialog();
-    void menu();
+    string menu();
     double ask(string message);
 
 public:

@@ -9,7 +9,7 @@ struct Expression
             _second;
     int     _action;
 
-    Expression(double second, double first);
+    Expression(double first, double second);
 
     inline void setAction(int action) { _action = action; }
 };

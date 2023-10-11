@@ -1,6 +1,6 @@
 #include "calculator.h"
 
-Expression::Expression(double second, double first)
+Expression::Expression(double first, double second)
 {
     _first = first;
     _second = second;
